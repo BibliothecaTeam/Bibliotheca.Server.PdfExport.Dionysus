@@ -21,17 +21,22 @@ router.get('/health', function(req, res) {
 
 // generator route
 router.post('/transform', function(req, res) {
+    var markdown = req.body;
 
-    markdownpdf().from.string(req.body).to.string(function (error, pdfString) {
+    console.log("Body: ", markdown);
+
+    // markdownpdf().from.string(markdown).to("document.pdf", function () {
+    //     res.status(200).send("OK");
+    // });
+
+    markdownpdf().from.string(markdown).to.buffer(function (error, pdfString) {
         if(error) {
-            res.statusCode = 400;
-            res.send(error);
+            res.status(400).send(error);
         }
         else {
             console.log("PDF created successfully");
-            res.statusCode = 200;
-            res.contentType = "application/pdf";
-            res.send(pdfString);
+            res.setHeader("Content-Type", "application/pdf");
+            res.status(200).send(pdfString);
         }
     });
 });
