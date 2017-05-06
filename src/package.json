@@ -8,6 +8,11 @@
     "engines": {
         "node": ">=6.9.1"
     },
+    "dependencies": {
+        "express": "~4.15.2",
+        "body-parser": "~1.17.1",
+        "markdown-pdf": "~7.0.0"
+    },
     "scripts": {
         "start": "node index.js"
     }
