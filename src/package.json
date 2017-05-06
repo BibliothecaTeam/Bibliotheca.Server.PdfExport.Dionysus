@@ -1,0 +1,14 @@
+{
+    "name": "bibliotheca-pdfexporter-dionysus",
+    "description": "Application which converts Markdown files to PDF",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "author": "BibliothecaTeam",
+    "engines": {
+        "node": ">=6.9.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
