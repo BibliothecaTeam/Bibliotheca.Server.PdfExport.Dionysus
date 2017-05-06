@@ -13,12 +13,12 @@ app.use(bodyParser.text());
 var port = process.env.PORT || 8080;
 var secureToken = process.env.SecureToken || "";
 
-var serverAddress = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServerAddress) || "http://localhost:8500";
-var serviceId = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServiceId) || "bibliotheca-pdfexport-dionysus";
-var serviceName = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServiceName) || "Bibliotheca PdfExport Dionysus";
-var serviceHttpHealthCheck = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServiceHttpHealthCheck) || "http://localhost:8080/api/health";
-var serviceAddress = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServiceAddress) || "http://localhost";
-var servicePort = (process.env.ServiceDiscovery && process.env.ServiceDiscovery.ServicePort) || "8080";
+var serverAddress = process.env.ServerAddress || "http://localhost:8500";
+var serviceId = process.env.ServiceId || "bibliotheca-pdfexport-dionysus";
+var serviceName = process.env.ServiceName || "Bibliotheca PdfExport Dionysus";
+var serviceHttpHealthCheck = process.env.ServiceHttpHealthCheck || "http://localhost:8080/api/health";
+var serviceAddress = process.env.ServiceAddress || "http://localhost";
+var servicePort = process.env.ServicePort || "8080";
 
 var serviceInfo = {
   "ID": serviceId,
