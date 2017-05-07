@@ -6,8 +6,8 @@ var request     = require('request');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(bodyParser.text({limit: '10mb'}));
 
 // set our port
 var port = process.env.PORT || 8080;
@@ -59,7 +59,7 @@ var router = express.Router();
 
 // health route
 router.get('/health', function(req, res) {
-    res.send('[Dionysos: 1.0.0]  I\'m alive and reachable');   
+    res.send('[Dionysos: 1.0.1]  I\'m alive and reachable');   
 });
 
 // generator route
