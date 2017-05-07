@@ -85,6 +85,7 @@ goto :EOF
 :: Deployment
 :: ----------
 
+:Deployment
 echo Handling Basic Web Site deployment.
 
 :: 1. KuduSync
