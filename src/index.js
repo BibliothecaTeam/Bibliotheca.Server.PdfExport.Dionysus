@@ -77,7 +77,9 @@ router.post('/transform', function(req, res) {
     }
 
     var markdown = req.body;
-    markdownpdf().from.string(markdown).to.buffer(function (error, pdfString) {
+    markdownpdf({
+        cssPath: "pdf.css"
+    }).from.string(markdown).to.buffer(function (error, pdfString) {
         if(error) {
             res.status(400).send(error);
         }
