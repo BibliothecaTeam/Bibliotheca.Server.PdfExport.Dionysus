@@ -59,7 +59,7 @@ var router = express.Router();
 
 // health route
 router.get('/health', function(req, res) {
-    res.send('[Dionysos: 1.0.2]  I\'m alive and reachable');   
+    res.send('[Dionysos: 1.0.3]  I\'m alive and reachable');   
 });
 
 // generator route
