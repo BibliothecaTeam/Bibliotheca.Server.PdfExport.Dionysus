@@ -15,31 +15,31 @@ var secureToken = process.env.SecureToken || "";
 
 var serverAddress = process.env.ServerAddress || "http://localhost:8500";
 var serviceId = process.env.ServiceId || "bibliotheca-pdfexport-dionysus";
-var serviceName = process.env.ServiceName || "Bibliotheca PdfExport Dionysus";
+var serviceType = process.env.ServiceType || "pdfexport";
 var serviceHttpHealthCheck = process.env.ServiceHttpHealthCheck || "http://localhost:8080/api/health";
-var serviceAddress = process.env.ServiceAddress || "http://localhost";
+var serviceAddress = process.env.ServiceAddress || "localhost";
 var servicePort = process.env.ServicePort || "8080";
 
 var serviceInfo = {
-  "ID": serviceId,
-  "Name": serviceName,
+  "Id": serviceId,
+  "ServiceType": serviceType,
   "Tags": [
     "bibliotheca",
     "pdfexport",
     "dionysus"
   ],
   "Address": serviceAddress,
-  "Port": Number(servicePort),
-  "EnableTagOverride": false,
-  "Check": {
-    "HTTP": serviceHttpHealthCheck,
-    "Interval": "15s"
-  }
+  "HealthCheck": {
+    "HealthCheckType": "HttpRest",
+    "Address": serviceHttpHealthCheck,
+    "Interval": 30,
+    "DeregisterCriticalServiceAfter": 240
+},
 };
 
 function registerService() {
-    request.put(
-        serverAddress + "/v1/agent/service/register",
+    request.post(
+        { url: serverAddress + "/api/services", headers: { 'Authorization': "SecureToken " + secureToken } },
         { json: serviceInfo },
         function (error, response, body) {
             if (!error) {
@@ -59,7 +59,7 @@ var router = express.Router();
 
 // health route
 router.get('/health', function(req, res) {
-    res.send('[Dionysos: 1.0.3]  I\'m alive and reachable');   
+    res.send('[Dionysos: 1.4.0]  I\'m alive and reachable');   
 });
 
 // generator route
